@@ -64,13 +64,51 @@ module.exports = {
     try {
       const user = await User.findOneAndUpdate(
         { _id: req.params.userId },
-        { $addToSet: req.body },
+        { $set: req.body },
         { runValidators: true, new: true }
       );
 
       if (!user) {
         res.status(404).json({ message: "No user with this id!" });
       }
+      res.status(200).json(user);
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  },
+
+  // Add a friend to a user
+  async addFriend(req, res) {
+    try {
+      const user = await User.findOneAndUpdate(
+        { _id: req.params.userId },
+        { $addToSet: { friends: req.params.friendId } },
+        { runValidators: true, new: true }
+      );
+
+      if(!user) {
+        return res.status(404).json({ message: "This user does not exist" });
+      }
+
+      res.status(200).json(user);
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  },
+
+  // Remove a friend from a user
+  async removeFriend(req, res) {
+    try {
+      const user = await User.findOneAndUpdate(
+        { _id: req.params.userId },
+        { $pull: { friends: { friendId: req.params.friendId } } },
+        { runValidators: true, new: true }
+      );
+
+      if(!user) {
+        return res.status(404).json({ message: "This user does not exist" });
+      }
+
       res.status(200).json(user);
     } catch (err) {
       res.status(500).json(err);
