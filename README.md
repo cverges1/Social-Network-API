@@ -18,7 +18,9 @@
   
   ## Usage
   
-  In the terminal at the root file run `npm start` to start the server. There is no front-end for this project so you will need to use a program such as insomnia in order to use the routes to create and delete users, create, delete and update thoughts, and create and delete reactions.
+  In the terminal at the root file run `npm start` to start the server. There is no front-end for this project so you will need to use a program such as insomnia in order to use the routes to create and delete users, create, delete and update thoughts, and create and delete reactions. See the video below for usage in insomnia.
+
+  https://watch.screencastify.com/v/U0hwde7RdTZYs2SB7udm
   
   ## Credits
   
